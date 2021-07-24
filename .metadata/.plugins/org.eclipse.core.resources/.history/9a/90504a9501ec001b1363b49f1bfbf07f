@@ -1,0 +1,36 @@
+package com.revature.daos;
+
+import java.util.List;
+
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+
+import com.revature.models.User;
+import com.revature.utils.HibernateUtil;
+
+public class UserDAO implements UserDAOInterface
+{
+
+	public void addUser(User newUser) 
+	{
+		Session ses = HibernateUtil.getSession();
+		
+		ses.save(newUser);
+		
+		HibernateUtil.closeSession();
+		
+	}
+
+	public List<User> getAllUsers() 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isPresent(String username) 
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

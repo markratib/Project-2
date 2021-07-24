@@ -1,0 +1,35 @@
+package com.revature.daos;
+
+import java.util.List;
+
+import org.hibernate.Session;
+
+import com.revature.models.User;
+import com.revature.models.Video;
+import com.revature.utils.HibernateUtil;
+
+public class VideoDAO implements VideoDAOInterface 
+{
+
+	public void addVideo(Video newVideo) 
+	{
+		Session ses = HibernateUtil.getSession();
+		
+		ses.save(newVideo);
+		
+		HibernateUtil.closeSession();
+		
+	}
+
+	public List<Video> getAllVideos() 
+	{
+		Session ses = HibernateUtil.getSession();
+		
+		List<Video> videoList = ses.createQuery("from Video").list();
+		
+		HibernateUtil.closeSession();
+		
+		return videoList;
+	}
+
+}

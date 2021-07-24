@@ -1,0 +1,51 @@
+package com.revature.models;
+
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="videos")
+public class Video 
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="video_id")//set the yser id column name
+	private int id;
+	
+	@Column(name="video_name", nullable = false)
+	private String name;
+	
+	@Column(name="description")
+	private String desc;
+	
+	@Column(name="upload_date")
+	private Date upload_date;
+	
+	@Column(name="release_date")
+	private Date release_date;
+	
+	@Column(name="vide_url")
+	private String url;
+	
+//	@Column(name="uploader_id_fk")
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="uploader_id_fk")
+	private User uploader;
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="genre_list")
+	private List<Genre> genre_list;
+	
+}

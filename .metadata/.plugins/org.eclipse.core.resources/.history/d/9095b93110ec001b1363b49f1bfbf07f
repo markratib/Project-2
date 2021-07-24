@@ -1,0 +1,59 @@
+package com.revature;
+
+import java.util.List;
+
+import com.revature.daos.GenreDAO;
+import com.revature.daos.UserDAO;
+import com.revature.models.Genre;
+import com.revature.models.User;
+
+public class Main 
+{
+	private static GenreDAO genreDao = new GenreDAO();
+	private static UserDAO userDao = new UserDAO();
+	
+	
+	public static void main(String[] args) 
+	{
+		createDB();
+
+	}
+	
+	public static void createDB()
+	{
+		User user1 = new User("merk", "123", "mark", "ratib", "somewhere@something.com", null);
+		
+		userDao.addUser(user1);
+		
+		List<User> userList = userDao.getAllUsers();
+		System.out.println("**************** TESTING USERS: ****************");
+		System.out.println("getAllUsers check...");
+		System.out.println(userList.toString());
+		
+		//checking if getUserByUsername works correctly
+		//THIS WORKS
+//		User user2 = userDao.getUserByUsername(user1.getUsername());
+		
+		//testing if getUserByUsername works with a username that is not present in the DB
+		//THIS WORKS, RETURNS NULL AS EXPECTED
+		User user2 = userDao.getUserByUsername("IAMNOTPRESENTLOL");
+		System.out.println("Checking if \"IAMNOTPRESENTLOL\" is in the DB...");
+		if(user2 != null)
+		{
+			System.out.println(user2.toString());
+		}
+		else//user2 is null
+		{
+			System.out.println("user2 is null!");
+		}
+		
+		System.out.println("**************** TESTING GENRES: ****************");
+		Genre genre1 = new Genre("Action");
+		Genre genre2 = new Genre("Romance");
+		Genre genre3 = new Genre("Comedy");
+		
+		genreDao.addGenre(genre1);
+		genreDao.addGenre(genre2);
+		genreDao.addGenre(genre3);
+	}
+}

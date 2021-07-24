@@ -1,0 +1,38 @@
+package com.revature.daos;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.revature.models.Watched;
+import com.revature.utils.HibernateUtil;
+
+public class WatchedDAO implements WatchedDAOInterface {
+
+	public void addWatched(Watched newList) 
+	{
+		{
+			Session ses = HibernateUtil.getSession();
+			Transaction tx = ses.beginTransaction();
+			//check if a transaction is in progress
+			if(!tx.isActive())
+			{
+				//if no transaction is in progress, begin one
+				tx.begin();
+			}
+
+			ses.save(newList);
+			//ACTUALLY ****ING COMMIT IT
+			tx.commit();
+			
+			HibernateUtil.closeSession();
+		}
+
+
+	}
+
+	public Watched getWatchedByUserId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,113 @@
+package com.revature.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="watched_table")
+public class Watched 
+{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="watched_id")
+	private int watched_id;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="video_id")
+	private Video video;
+
+	public Watched() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Watched(User user, Video video) {
+		super();
+		this.user = user;
+		this.video = video;
+	}
+
+	public Watched(int watched_id, User user, Video video) {
+		super();
+		this.watched_id = watched_id;
+		this.user = user;
+		this.video = video;
+	}
+
+	@Override
+	public String toString() {
+		return "Watched [watched_id=" + watched_id + ", user=" + user + ", video=" + video + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((video == null) ? 0 : video.hashCode());
+		result = prime * result + watched_id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Watched other = (Watched) obj;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
+		if (video == null) {
+			if (other.video != null)
+				return false;
+		} else if (!video.equals(other.video))
+			return false;
+		if (watched_id != other.watched_id)
+			return false;
+		return true;
+	}
+
+	public int getWatched_id() {
+		return watched_id;
+	}
+
+	public void setWatched_id(int watched_id) {
+		this.watched_id = watched_id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Video getVideo() {
+		return video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
+	}
+	
+	
+}

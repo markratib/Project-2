@@ -1,0 +1,8 @@
+package com.revature.daos;
+
+public interface VideoDAOInterface 
+{
+	public void addVideo();
+	
+	public 
+}

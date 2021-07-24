@@ -1,0 +1,14 @@
+package com.revature.daos;
+
+import java.util.List;
+
+import com.revature.models.Genre;
+
+public class GenreDAO implements GenreDAOInterface 
+{
+	public void addGenre(Genre newGenre);
+	
+	public List<Genre> getAllGenres();
+	
+	public boolean isPresent(String genreName);
+}

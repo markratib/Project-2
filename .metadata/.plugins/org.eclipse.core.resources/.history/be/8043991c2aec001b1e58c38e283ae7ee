@@ -1,0 +1,46 @@
+package com.revature.daos;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.revature.models.Video;
+import com.revature.utils.HibernateUtil;
+
+public class VideoDAO implements VideoDAOInterface 
+{
+	/*
+	 * REMINDER TO SELF: COMMIT ALL TRANSACTIONS, IT WILL PROBABLY SAVE YOU A LARGE AMOUNT
+	 * OF HEADACHE IN THE FUTURE. I SOLVED MY JOIN TABLE PROBLEM WHEN ADDING VIDEOS WITH
+	 * "Transaction.commit();". I DONT KNOW WHY THIS WAS A PROBLEM, BUT IT WAS AND I AM MAD.
+	 */
+	public void addVideo(Video newVideo) 
+	{
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = ses.beginTransaction();
+		
+		if(!tx.isActive())
+		{
+			tx.begin();
+		}
+
+		ses.save(newVideo);
+		tx.commit();
+		
+		HibernateUtil.closeSession();
+		
+	}
+
+	public List<Video> getAllVideos() 
+	{
+		Session ses = HibernateUtil.getSession();
+		
+		List<Video> videoList = ses.createQuery("from Video").list();
+		
+		HibernateUtil.closeSession();
+		
+		return videoList;
+	}
+
+}

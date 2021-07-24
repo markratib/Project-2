@@ -1,0 +1,17 @@
+package com.revature.daos;
+
+import com.revature.models.Watched;
+
+public class WatchedDAO implements WatchedDAOInterface {
+
+	public void addWatched(Watched newList) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public Watched getWatchedByUserId(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
