@@ -62,6 +62,7 @@ public class UserDAO implements UserDAOInterface
 		//check if we recieved anything back
 		if(temp.size() > 0)
 		{
+			//put all te information in targetUser
 			targetUser = new User(temp.get(0).getId(),
 					temp.get(0).getUsername(),
 					temp.get(0).getPassword(),
@@ -77,8 +78,25 @@ public class UserDAO implements UserDAOInterface
 	//		temp.get(0).getLast_name();
 	//		temp.get(0).getJoin_date();
 		}
-//		else
+//		else//nothing needs to go in the else block
+		
+		//return the user, if none was found we return null
 		return targetUser;
+	}
+
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateUser(User updatedUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean removeUser(User targetUser) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

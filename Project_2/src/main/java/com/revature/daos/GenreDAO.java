@@ -53,5 +53,29 @@ public class GenreDAO implements GenreDAOInterface
 		
 		return isPresent;
 	}
+
+	public Genre getGenreById(int id) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Genre getGenreByName(String name) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateGenre(Genre updatedGenre) 
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean removeGenre(Genre targetGenre) 
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 }

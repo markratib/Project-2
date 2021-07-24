@@ -53,4 +53,19 @@ public class VideoDAO implements VideoDAOInterface
 		return targetVideo;
 	}
 
+	public Video getVideoByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void updateVideo(Video updatedVideo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean removeVideo(Video targetVideo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
